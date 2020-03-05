@@ -2,6 +2,18 @@
 
 using namespace std;
 
+static const int dbg = 0;
+
+template<typename T>
+void PRINT_MATRIX(T begin, T end) {
+    for(auto it = begin; it != end; ++it) {
+        for(auto jt = it->begin(); jt != it->end(); ++jt) {
+            cout << *jt << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
 
 int main() {
     cin.sync_with_stdio(false);
@@ -21,7 +33,7 @@ int main() {
             }
         }
     }
-    if(START_Y == START_X && START_X == N-1) {
+    if(START_Y == START_X && START_X == 0) {
         cout << 0 << endl;
         return 0;
     }
@@ -44,7 +56,7 @@ int main() {
                 if(steps < d[ny][nx]) {
                     d[ny][nx] = steps;
                     q.push(tuple<int,int,int>(ny, nx, 1+steps));
-                    if(ny == N-1 && nx == N-1) {
+                    if(ny == 0 && nx == 0) {
                         cout << steps << endl;
                         return 0;
                     }
@@ -52,6 +64,7 @@ int main() {
             }
         } 
     }
+    if(dbg) PRINT_MATRIX(d.begin(), d.end());
     cout << -1 << endl;
     return 0;
 }
